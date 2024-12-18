@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <h2>Portfolio</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Company Name</th>
+            <th>Trade</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for trade_row in trade_data %}
+        <tr>
+            <td>{{ trade_row['id'] }}</td>
+            <td>{{ trade_row['company_name'] }}</td>
+            <td>{{ trade_row['trade'] }}</td>
+            <td>{{ trade_row['amount'] }}</td>
+            <td>{{ trade_row['trade_date'] }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('endpoints.portfolio') }}">
+                    <input type="hidden" name="trade_id" value="{{ trade_row.id }}">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br/>
+    <div>
+        <a href="{{ url_for('endpoints.home') }}">DASHBOARD</a>
+    </div>
+</body>
+</html>

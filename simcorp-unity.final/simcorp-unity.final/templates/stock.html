@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Data</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <h2>Stock Data for {{ symbol }}</h2>
+    
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Open</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Close</th>
+            <th>Volume</th>
+        </tr>
+        {% for row in stock_data %}
+        <tr>
+            <td>{{ row['Date'] }}</td>
+            <td>{{ row['Open'] }}</td>
+            <td>{{ row['High'] }}</td>
+            <td>{{ row['Low'] }}</td>
+            <td>{{ row['Close'] }}</td>
+            <td>{{ row['Volume'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form method="POST" action="{{ url_for('endpoints.stock_json') }}">
+        <input type="hidden" name="symbol" value="{{ symbol }}">
+        <input type="hidden" name="start_date" value="{{ start_date }}">
+        <input type="hidden" name="end_date" value="{{ end_date }}">
+        <button type="submit">View as JSON</button>
+    </form>
+
+    <img src="{{ url_for('endpoints.plot', symbol=symbol, start_date=start_date, end_date=end_date) }}" alt="Stock Graph">
+</body>
+</html>
+

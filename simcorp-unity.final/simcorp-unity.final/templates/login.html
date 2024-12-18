@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+          <div class="login">
+            <div class="login-header">
+              <h3>LOGIN</h3>
+              <p>Please enter your credentials to login.</p>
+            </div>
+          </div>
+          {% if error %}
+            <p style="color: red;">{{ error }}</p>
+          {% endif %}
+          <form class="login-form" method="POST">
+            <input type="text" id="username" name="username" placeholder="username"/>
+            <input type="password" id="password" name="password" placeholder="password"/>
+            <button>login</button>
+            <p class="message">Not registered? <a href="{{ url_for('endpoints.register') }}">Create an account</a></p>
+          </form>
+        </div>
+      </div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Unity_Simcorp
 
-SimCorp School Project
+
 This repository contains a school project developed as part of my studies, where I worked on building a web application using Python and MySQL. The project demonstrates my skills in backend development, database management, and web applications.
 
 Content
